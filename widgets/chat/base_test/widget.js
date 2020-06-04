@@ -47,7 +47,7 @@ window.addEventListener('onEventReceived', function (obj) {
                                 description: "Verified"
                             }],
                             channel: channelName,
-                            text: "Howdy! My name is Bill and I am here to serve Kappa",
+                            text: "Howdy! My name is Bill and I am here to chill Kappa",
                             isAction: !1,
                             emotes: [{
                                 type: "twitch",
@@ -98,11 +98,11 @@ window.addEventListener('onEventReceived', function (obj) {
     let username = data.displayName + ":";
     if (nickColor === "user") {
         const color = data.displayColor !== "" ? data.displayColor : "#" + (md5(username).substr(26));
-        username = `<span style="color:${color}">${username}</span>`;
+        username = `<span class=user-nick style="color:${color}">${username}</span>`;
     }
     if (nickColor === "custom") {
         const color = customNickColor;
-        username = `<span style="color:${color}">${username}</span>`;
+        username = `<span class=user-nick style="color:${color}">${username}</span>`;
     }
     addMessage(username, badges, message, data.isAction, data.userId, data.msgId);
 });
@@ -151,18 +151,28 @@ function attachEmotes(message) {
                 });
                 if (typeof result[0] !== "undefined") {
                     let url = result[0]['urls'][1];
-                    if (provider === "twitch")
-                    {
+                    if (provider === "twitch") {
                         return `<img class="emote" " src="${url}"/>`;
-                    }
-                    else{
+                    } else {
                         if (typeof result[0].coords === "undefined") {
                             result[0].coords = {x: 0, y: 0};
                         }
                         let x = parseInt(result[0].coords.x);
                         let y = parseInt(result[0].coords.y);
-                        const backgroundTwitch = provider === "twitch" ? "background-size: contain; " : "";
-                        return `<div class="emote" style="width: {emoteSize}px; display: inline-block; background-image: url(${url});  ${backgroundTwitch}background-position: -${x}px -${y}px;"></div>`;
+
+                        let width = "{emoteSize}px";
+                        let height = "auto";
+
+                        if (provider === "mixer") {
+                            console.log(result[0]);
+                            if (result[0].coords.width) {
+                                width = `${result[0].coords.width}px`;
+                            }
+                            if (result[0].coords.height) {
+                                height = `${result[0].coords.height}px`;
+                            }
+                        }
+                        return `<div class="emote" style="width: ${width}; height:${height}; display: inline-block; background-image: url(${url}); background-position: -${x}px -${y}px;"></div>`;
                     }
                 } else return key;
 

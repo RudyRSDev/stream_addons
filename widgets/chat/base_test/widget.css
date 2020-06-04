@@ -1,5 +1,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
 @import url('https://fonts.googleapis.com/css?family={{fontName}}');
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 * {
     font-family: '{{fontName}}', sans-serif;
@@ -34,6 +35,17 @@
     height:{{fontSize}}px;
 }
 
+.user-nick{
+	text-transform: uppercase;
+ 	font-family: 'Sriracha', cursive;
+	-webkit-text-fill-color: white;
+	text-shadow:0px 0px 4px #77FF00
+}
+
+.user-nick:active{
+	filter: blur(4px) !important;	
+}
+
 .user-box{
     display:inline;
     font-size:{{fontSize}}px;
@@ -53,8 +65,28 @@
     height: {emoteSize}px;
     vertical-align: middle;
     background-repeat:no-repeat;
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	transform: scale(1);
+	animation: pulse 2s infinite;
 }
 
 .action{
     font-style: italic;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
 }
