@@ -93,12 +93,13 @@ window.addEventListener('onEventReceived', function (obj) {
     }
     for (let i = 0; i < data.badges.length; i++) {
         badge = data.badges[i];
+		console.log("data: "+badge.url)
         badges += `<img alt="" src="${badge.url}" class="badge"> `;
     }
     let username = data.displayName + ":";
     if (nickColor === "user") {
         const color = data.displayColor !== "" ? data.displayColor : "#" + (md5(username).substr(26));
-        username = `<span class=user-nick style="color:${color}">${username}</span>`;
+        username = `<span class=user-nick style="color:${color}">${username}</span><span class=user-nick-2 style="color:${color}">${username}</span>`;
     }
     if (nickColor === "custom") {
         const color = customNickColor;

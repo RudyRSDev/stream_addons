@@ -38,12 +38,18 @@
 .user-nick{
 	text-transform: uppercase;
  	font-family: 'Sriracha', cursive;
-	-webkit-text-fill-color: white;
-	text-shadow:0px 0px 4px #77FF00
+	fontsize: 150%;
+	z-index: 1;
+	position: absolute;
+	filter: blur(3px);
 }
 
-.user-nick:active{
-	filter: blur(4px) !important;	
+.user-nick-2{
+	text-transform: uppercase;
+ 	font-family: 'Sriracha', cursive;
+	z-index: 2;
+	position: relative;
+	-webkit-text-fill-color: white;
 }
 
 .user-box{
